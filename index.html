@@ -8,321 +8,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
-            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
-            color: #e0e0e0;
-            transition: all 0.5s ease;
-        }
-        body.dark-mode {
-            background: linear-gradient(135deg, #000000 0%, #0f0f23 50%, #1a1a2e 100%);
-        }
-        .parallax {
-            height: 100vh;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .parallax-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') no-repeat center center;
-            background-size: cover;
-            transform: translateY(0);
-            transition: transform 0.1s linear;
-            z-index: 0;
-        }
-        .parallax-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, rgba(26, 26, 46, 0.8) 50%, rgba(22, 33, 62, 0.9) 100%);
-            z-index: 1;
-        }
-        .particles-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 2;
-        }
-        .parallax-content {
-            z-index: 3;
-            text-align: center;
-            color: #ffffff;
-            animation: fadeInUp 2s ease-out;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-        }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(60px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .premium-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 4rem;
-            font-weight: 700;
-            background: linear-gradient(45deg, #ffd700, #ffed4e, #ffd700);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 20px;
-            text-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
-        }
-        .section {
-            padding: 140px 20px;
-            min-height: 100vh;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(0, 0, 0, 0.1) 100%);
-            backdrop-filter: blur(25px);
-            border-radius: 40px 40px 0 0;
-            margin-top: -40px;
-            position: relative;
-            z-index: 4;
-            box-shadow: 0 -20px 60px rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        body.dark-mode .section {
-            background: linear-gradient(135deg, rgba(26, 26, 46, 0.95) 0%, rgba(0, 0, 0, 0.9) 100%);
-        }
-        .nav-buttons {
-            margin-top: 50px;
-        }
-        .btn-premium {
-            margin: 0 25px;
-            padding: 18px 40px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1.2rem;
-            transition: all 0.5s ease;
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
-            position: relative;
-            overflow: hidden;
-            background: linear-gradient(45deg, #ffd700, #ffed4e);
-            color: #000;
-            border: none;
-        }
-        .btn-premium::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-            transition: left 0.6s;
-        }
-        .btn-premium:hover::before {
-            left: 100%;
-        }
-        .btn-premium:hover {
-            transform: translateY(-8px) scale(1.05);
-            box-shadow: 0 20px 50px rgba(255, 215, 0, 0.5);
-        }
-        .btn-outline-premium {
-            background: transparent;
-            border: 2px solid #ffd700;
-            color: #ffd700;
-        }
-        .btn-outline-premium:hover {
-            background: #ffd700;
-            color: #000;
-        }
-        .interactive-diagram {
-            position: relative;
-            width: 100%;
-            height: 650px;
-            background: linear-gradient(45deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-            border-radius: 25px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
-            overflow: hidden;
-            cursor: pointer;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-        }
-        .interactive-diagram::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
-            animation: rotate 12s linear infinite;
-        }
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-        .hover-info {
-            position: absolute;
-            background: linear-gradient(135deg, rgba(0, 0, 0, 0.9) 0%, rgba(26, 26, 46, 0.9) 100%);
-            color: white;
-            padding: 25px;
-            border-radius: 20px;
-            display: none;
-            z-index: 10;
-            max-width: 400px;
-            text-align: center;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
-            animation: popIn 0.4s ease-out;
-            border: 1px solid rgba(255, 215, 0, 0.3);
-        }
-        @keyframes popIn {
-            from { opacity: 0; transform: scale(0.8); }
-            to { opacity: 1; transform: scale(1); }
-        }
-        .terminal {
-            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
-            color: #00ff41;
-            padding: 35px;
-            border-radius: 25px;
-            font-family: 'Courier New', monospace;
-            height: 450px;
-            overflow-y: auto;
-            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.6);
-            border: 2px solid #00ff41;
-            position: relative;
-            font-size: 1.1rem;
-        }
-        .terminal::before {
-            content: 'Terminal - CyberEdu';
-            position: absolute;
-            top: 15px;
-            left: 25px;
-            color: #00ff41;
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-        .dark-mode-toggle {
-            position: fixed;
-            right: 25px;
-            z-index: 1000;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(0, 0, 0, 0.3) 100%);
-            border: 2px solid rgba(255, 215, 0, 0.5);
-            border-radius: 50%;
-            width: 70px;
-            height: 70px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.4s;
-            backdrop-filter: blur(15px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-        body.dark-mode .dark-mode-toggle {
-            background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(26, 26, 46, 0.9) 100%);
-        }
-        .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(0, 0, 0, 0.2) 100%);
-            backdrop-filter: blur(25px);
-            z-index: 1000;
-            padding: 20px 0;
-            transition: all 0.4s;
-            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-        }
-        body.dark-mode .navbar {
-            background: linear-gradient(135deg, rgba(26, 26, 46, 0.95) 0%, rgba(0, 0, 0, 0.9) 100%);
-        }
-        .navbar-brand {
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
-            font-size: 2rem;
-            color: #ffd700 !important;
-            text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
-        }
-        .card {
-            border: none;
-            border-radius: 25px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-            transition: all 0.4s;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(0, 0, 0, 0.1) 100%);
-            backdrop-filter: blur(15px);
-            color: #e0e0e0;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .card:hover {
-            transform: translateY(-12px) scale(1.02);
-            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.4);
-        }
-        .footer {
-            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 100%);
-            color: #e0e0e0;
-            padding: 60px 0;
-            text-align: center;
-            position: relative;
-            border-top: 1px solid rgba(255, 215, 0, 0.2);
-        }
-        .footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') no-repeat center center;
-            background-size: cover;
-            opacity: 0.05;
-            z-index: 0;
-        }
-        .footer-content {
-            z-index: 1;
-            position: relative;
-        }
-        .ctf-challenge {
-            background: linear-gradient(135deg, #1a1a2e 0%, #0f0f23 100%);
-            border-radius: 20px;
-            padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(255, 215, 0, 0.3);
-        }
-        .ctf-title {
-            color: #ffd700;
-            font-weight: 700;
-            margin-bottom: 15px;
-        }
-        .ctf-description {
-            margin-bottom: 20px;
-        }
-        .ctf-instructions {
-            background: rgba(0, 0, 0, 0.5);
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            border-left: 4px solid #ffd700;
-        }
-        @media (max-width: 768px) {
-            .parallax {
-                height: 130vh;
-            }
-            
-            .nav-buttons .btn-premium {
-                margin: 10px;
-                display: block;
-                width: calc(100% - 20px);
-            }
-            .premium-title {
-                font-size: 3rem;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
+
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark">
@@ -334,7 +21,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link text-light" href="#intro" onclick="scrollToSection('intro')">Mulai Belajar</a></li>
-                    <li class="nav-item"><a class="nav-link text-light" href="#konsep" onclick="scrollToSection('konsep')">Materi</a></li>
+                    <li class="nav-item"><a class="nav-link text-light" href="#intro" onclick="scrollToSection('intro')">Materi</a></li>
                     <li class="nav-item"><a class="nav-link text-light" href="#praktik" onclick="scrollToSection('praktik')">Praktik</a></li>
                     <li class="nav-item"><a class="nav-link text-light" href="#tentang" onclick="scrollToSection('tentang')">Tentang</a></li>
                 </ul>
@@ -350,14 +37,8 @@
         <div class="parallax-overlay"></div>
         <div id="particles-js" class="particles-container"></div>
         <div class="parallax-content">
-            <h1 class="premium-title" id="typed"></h1>
-            <p data-aos="fade-up" data-aos-delay="600">Platform edukasi interaktif premium untuk memahami konsep dasar keamanan siber melalui materi visual, audio, dan praktik langsung.</p>
-            <div class="nav-buttons" data-aos="fade-up" data-aos-delay="800">
-                <button class="btn btn-premium" onclick="scrollToSection('intro')"><i class="fas fa-play"></i> Mulai Belajar</button>
-                <button class="btn btn-outline-premium btn-premium" onclick="scrollToSection('konsep')"><i class="fas fa-book"></i> Materi</button>
-                <button class="btn btn-outline-premium btn-premium" onclick="scrollToSection('praktik')"><i class="fas fa-code"></i> Praktik</button>
-                <button class="btn btn-outline-premium btn-premium" onclick="scrollToSection('tentang')"><i class="fas fa-info-circle"></i> Tentang</button>
-            </div>
+                        <h1 class="premium-title" id="typed"></h1>
+            <p data-aos="fade-up" data-aos-delay="100">Platform edukasi interaktif premium untuk memahami konsep dasar keamanan siber melalui materi dan praktik langsung.</p>
         </div>
     </section>
 
@@ -365,128 +46,296 @@
     <section id="intro" class="section">
         <div class="container">
             <h2 data-aos="fade-right">Pengenalan Keamanan Siber</h2>
-            <p data-aos="fade-right" data-aos-delay="200">Keamanan siber adalah praktik melindungi sistem, jaringan, dan program dari serangan digital. Penting karena ancaman siber dapat menyebabkan kerugian finansial, kehilangan data, dan risiko privasi.</p>
-            <h3 data-aos="fade-left" data-aos-delay="400">Contoh Ancaman Siber:</h3>
-            <div class="row">
-				<div class="col-md-3" data-aos="zoom-in" data-aos-delay="600">
-                    <div class="card p-4 text-center">
-                        <i class="fas fa-virus fa-4x text-danger mb-3"></i>
-                        <h5>Malware</h5>
-                        <p>Perangkat lunak berbahaya yang dapat merusak sistem.</p>
-                    </div>
+            <p data-aos="fade-right" data-aos-delay="50">Keamanan siber (cybersecurity) merupakan suatu disiplin ilmu dan praktik yang berfokus pada perlindungan sistem informasi berbasis komputer, jaringan, perangkat lunak, serta data digital dari berbagai bentuk ancaman di dunia maya. Keamanan siber mencakup serangkaian kebijakan, prosedur, teknologi, dan kontrol teknis yang dirancang untuk mencegah, mendeteksi, serta merespons serangan siber yang dapat mengganggu operasional sistem, merusak data, maupun melanggar privasi pengguna.</p>
+            <p data-aos="fade-right" data-aos-delay="100">Dalam konteks sistem informasi modern, keamanan siber bertujuan untuk menjaga tiga aspek utama yang dikenal sebagai CIA Triad, yaitu kerahasiaan (confidentiality), keutuhan (integrity), dan ketersediaan (availability) informasi. Kerahasiaan memastikan bahwa data hanya dapat diakses oleh pihak yang berwenang, keutuhan menjamin bahwa data tetap akurat dan tidak mengalami perubahan tanpa izin, sedangkan ketersediaan memastikan bahwa sistem dan informasi dapat diakses secara tepat waktu oleh pengguna yang sah.</p>
+            <h3 data-aos="fade-left" data-aos-delay="150">Contoh Ancaman Siber :</h3>
+            <div class="scrollable-cards d-flex flex-nowrap overflow-auto pb-3 mt-4" style="gap: 15px; -webkit-overflow-scrolling: touch; scrollbar-width: none; -ms-overflow-style: none;">
+                <div class="card p-4 text-center flex-shrink-0" style="width: 250px;" data-aos="zoom-in" data-aos-delay="200">
+                    <i class="fas fa-virus fa-4x text-danger mb-3"></i>
+                    <h5>Malware</h5>
+                    <p>Perangkat lunak berbahaya yang dapat merusak sistem.</p>
                 </div>
-                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="700">
-                    <div class="card p-4 text-center">
-                        <i class="fas fa-fish fa-4x text-warning mb-3"></i>
-                        <h5>Phishing</h5>
-                        <p>Penipuan melalui email atau situs palsu.</p>
-                    </div>
+                <div class="card p-4 text-center flex-shrink-0" style="width: 250px;" data-aos="zoom-in" data-aos-delay="250">
+                    <i class="fas fa-fish fa-4x text-warning mb-3"></i>
+                    <h5>Phishing</h5>
+                    <p>Penipuan melalui email atau situs palsu.</p>
                 </div>
-                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="800">
-                    <div class="card p-4 text-center">
-                        <i class="fas fa-key fa-4x text-info mb-3"></i>
-                        <h5>Brute Force</h5>
-                        <p>Mencoba kombinasi password secara otomatis.</p>
-                    </div>
+                <div class="card p-4 text-center flex-shrink-0" style="width: 250px;" data-aos="zoom-in" data-aos-delay="300">
+                    <i class="fas fa-key fa-4x text-info mb-3"></i>
+                    <h5>Brute Force</h5>
+                    <p>Mencoba kombinasi password secara otomatis.</p>
                 </div>
-                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="900">
-                    <div class="card p-4 text-center">
-                        <i class="fas fa-database fa-4x text-danger mb-3"></i>
-                        <h5>Data Breach</h5>
-                        <p>Kebocoran data sensitif ke pihak luar.</p>
-                    </div>
+                <div class="card p-4 text-center flex-shrink-0" style="width: 250px;" data-aos="zoom-in" data-aos-delay="350">
+                    <i class="fas fa-database fa-4x text-danger mb-3"></i>
+                    <h5>Data Breach</h5>
+                    <p>Kebocoran data sensitif ke pihak luar.</p>
                 </div>
-            </div>
-            <div class="text-center mt-5" data-aos="fade-up" data-aos-delay="1000">
-                <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Infografis" class="img-fluid rounded shadow-lg">
-                <audio controls class="mt-3">
-                    <source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" type="audio/wav">
-                </audio>
+                <div class="card p-4 text-center flex-shrink-0" style="width: 250px;" data-aos="zoom-in" data-aos-delay="400">
+                    <i class="fas fa-lock fa-4x text-warning mb-3"></i>
+                    <h5>Ransomware</h5>
+                    <p>Malware yang mengenkripsi data dan meminta tebusan.</p>
+                </div>
+                <div class="card p-4 text-center flex-shrink-0" style="width: 250px;" data-aos="zoom-in" data-aos-delay="450">
+                    <i class="fas fa-bolt fa-4x text-danger mb-3"></i>
+                    <h5>DDoS</h5>
+                    <p>Serangan yang membanjiri server dengan lalu lintas palsu.</p>
+                </div>
+                <div class="card p-4 text-center flex-shrink-0" style="width: 250px;" data-aos="zoom-in" data-aos-delay="500">
+                    <i class="fas fa-code fa-4x text-info mb-3"></i>
+                    <h5>SQL Injection</h5>
+                    <p>Menyisipkan kode berbahaya ke dalam query database.</p>
+                </div>
+                <div class="card p-4 text-center flex-shrink-0" style="width: 250px;" data-aos="zoom-in" data-aos-delay="550">
+                    <i class="fas fa-user-secret fa-4x text-warning mb-3"></i>
+                    <h5>Man-in-the-Middle</h5>
+                    <p>Intercepting komunikasi antara dua pihak.</p>
+                </div>
             </div>
         </div>
     </section>
 
+    <style>
+    .scrollable-cards::-webkit-scrollbar {
+        display: none; /* Sembunyikan scrollbar di browser WebKit (Chrome, Safari) */
+    }
+    </style>
+
     <!-- Konsep Dasar Keamanan Siber -->
     <section id="konsep" class="section">
         <div class="container">
-            <h2 data-aos="fade-right">Konsep Dasar Keamanan Siber</h2>
-            <div class="interactive-diagram" onmouseover="showInfo(event)" onmouseout="hideInfo()" data-aos="fade-up" data-aos-delay="200">
-                <div class="hover-info" id="auth">Authentication & Authorization: Verifikasi identitas dan izin akses untuk memastikan hanya pengguna yang sah yang dapat mengakses.</div>
-                <div class="hover-info" id="cia">CIA Triad: Confidentiality (Kerahasiaan), Integrity (Integritas), Availability (Ketersediaan) - tiga pilar utama keamanan informasi.</div>
-                <div class="hover-info" id="password">Password Security: Gunakan password kuat, unik, dan lakukan rotasi secara berkala untuk mencegah akses tidak sah.</div>
-                <div class="hover-info" id="network">Network Security: Lindungi jaringan dari intrusi dengan firewall, VPN, dan monitoring terus-menerus.</div>
-                <p class="text-white fw-bold">Hover pada area untuk info lebih lanjut.</p>
+            <h2 class="mb-5" data-aos="fade-right">Konsep Dasar Keamanan Siber</h2>
+            <div class="row">
+                <div class="col-md-6 col-lg-3 mb-4" data-aos="zoom-in" data-aos-delay="50">
+                    <div class="card p-4 text-center h-100">
+                        <i class="fas fa-user-check fa-4x text-primary mb-3"></i>
+                        <h5>Authentication & Authorization</h5>
+                        <p>Verifikasi identitas dan izin akses untuk memastikan hanya pengguna yang sah yang dapat mengakses.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="card p-4 text-center h-100">
+                        <i class="fas fa-shield-alt fa-4x text-success mb-3"></i>
+                        <h5>CIA Triad</h5>
+                        <p>Confidentiality (Kerahasiaan), Integrity (Integritas), Availability (Ketersediaan) - tiga pilar utama keamanan informasi.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4" data-aos="zoom-in" data-aos-delay="150">
+                    <div class="card p-4 text-center h-100">
+                        <i class="fas fa-lock fa-4x text-warning mb-3"></i>
+                        <h5>Password Security</h5>
+                        <p>Gunakan password kuat, unik, dan lakukan rotasi secara berkala untuk mencegah akses tidak sah.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="card p-4 text-center h-100">
+                        <i class="fas fa-network-wired fa-4x text-info mb-3"></i>
+                        <h5>Network Security</h5>
+                        <p>Lindungi jaringan dari intrusi dengan firewall, VPN, dan monitoring terus-menerus.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Praktik Dasar Keamanan Siber -->
     <section id="praktik" class="section">
+    <div class="container">
+        <h2 data-aos="fade-right">Praktik Dasar Keamanan Siber</h2>
+        
+        <h3 data-aos="fade-left" data-aos-delay="50">Mini CTF</h3>
+        <p data-aos="fade-up" data-aos-delay="100">CTF (Capture The Flag) adalah metode pembelajaran dan kompetisi di bidang keamanan siber yang dirancang untuk melatih kemampuan peserta dalam mengidentifikasi, mengeksploitasi, dan memahami celah keamanan sistem secara terkontrol dan legal.</p>
+        <p data-aos="fade-up" data-aos-delay="150">CTF adalah metode pembelajaran keamanan siber di mana peserta harus menemukan sebuah flag berupa kode rahasia sebagai bukti keberhasilan menyelesaikan tantangan. Flag dalam Capture The Flag (CTF) merupakan kode unik berbentuk string teks yang digunakan sebagai bukti bahwa suatu tantangan keamanan siber telah berhasil diselesaikan oleh peserta.</p>
+        <p data-aos="fade-up" data-aos-delay="200">Flag biasanya dimulai dengan "CyberEdu{" dan diakhiri dengan "}".</p>
+        <p data-aos="fade-up" data-aos-delay="250">Berikut ada contoh Challenge CTF sederhana :</p>
+
+        <!-- CTF Challenge 1: Inspect Element -->
+        <div class="ctf-challenge" data-aos="zoom-in" data-aos-delay="300">
+            <h4 class="ctf-title">Challenge 1: Inspect Me (Easy)</h4>
+            <p class="ctf-description">Temukan flag yang tersembunyi di halaman ini. Flag dimulai dengan "CyberEdu{" dan diakhiri dengan "}".</p>
+            <div class="ctf-instructions">
+                <strong>Instruksi:</strong>
+                <ol>
+                    <li>Klik kanan <b> disini</b>.</li>
+                    <li>Pilih "Inspect" atau "Inspect Element".</li>
+                    <li>Cari di bagian HTML untuk menemukan flag yang dikomentari.</li>
+                    <li>Masukkan flag ke dalam kotak di bawah.</li>
+                </ol>
+            </div>
+            <!-- Flag : CyberEdu{1n5p3ct_me_123} -->
+            <input type="text" id="ctf1" placeholder="Masukkan flag" class="form-control mb-2 bg-dark text-light border-secondary">
+            <button class="btn btn-warning" onclick="checkCTF1()">Submit</button>
+            <p id="ctf1Result" class="mt-2"></p>
+        </div>
+        
+        <!-- CTF Challenge 2: Basic SQL Injection -->
+        <div class="ctf-challenge" data-aos="zoom-in" data-aos-delay="350">
+            <h4 class="ctf-title">Challenge 2: SQL Injection (Easy)</h4>
+            <p class="ctf-description">Login sebagai admin tanpa mengetahui password. Flag akan muncul jika berhasil.</p>
+            <div class="ctf-instructions">
+                <strong>Instruksi:</strong>
+                <ol>
+                    <li>Masukkan username: admin</li>
+                    <li>Untuk password, gunakan payload SQL injection sederhana seperti: ' OR '1'='1</li>
+                    <li>Klik login dan lihat hasilnya.</li>
+                </ol>
+            </div>
+            <input type="text" id="ctf2Username" placeholder="Username" class="form-control mb-2 bg-dark text-light border-secondary">
+            <input type="text" id="ctf2Password" placeholder="Password" class="form-control mb-2 bg-dark text-light border-secondary">
+            <button class="btn btn-info" onclick="checkCTF2()">Login</button>
+            <p id="ctf2Result" class="mt-2"></p>
+        </div>
+        
+        <!-- CTF Challenge 3: Caesar Cipher -->
+        <div class="ctf-challenge" data-aos="zoom-in" data-aos-delay="400">
+            <h4 class="ctf-title">Challenge 3: Caesar Cipher (Easy)</h4>
+            <p class="ctf-description">Dekripsi pesan berikut: "PloreRqh{ebg13_pvcure_456}". Shift cipher dengan 13 posisi.</p>
+            <div class="ctf-instructions">
+                <strong>Instruksi:</strong>
+                <ol>
+                    <li>Caesar cipher menggeser huruf sebanyak 13 posisi (ROT13).</li>
+                    <li>Gunakan tool online atau dekripsi manual: A->N, B->O, dll.</li>
+                    <li>Masukkan flag yang didapat ke kotak di bawah.</li>
+                </ol>
+            </div>
+            <input type="text" id="ctf3" placeholder="Masukkan flag" class="form-control mb-2 bg-dark text-light border-secondary">
+            <button class="btn btn-success" onclick="checkCTF3()">Submit</button>
+            <p id="ctf3Result" class="mt-2"></p>
+        </div>
+
+        <!-- CTF Challenge 4: Base64 Decode -->
+        <div class="ctf-challenge" data-aos="zoom-in" data-aos-delay="450">
+            <h4 class="ctf-title">Challenge 4: Base64 Decode (Easy)</h4>
+            <p class="ctf-description">Dekode string Base64 berikut: "Q3liZXJFZHV7YmFzZTY0X2RlY29kZV8xMjN9". Flag dimulai dengan "CyberEdu{" dan diakhiri dengan "}".</p>
+            <div class="ctf-instructions">
+                <strong>Instruksi:</strong>
+                <ol>
+                    <li>Gunakan tool online Base64 decoder atau fungsi decode di browser console.</li>
+                    <li>Dekode string yang diberikan.</li>
+                    <li>Masukkan flag yang didapat ke kotak di bawah.</li>
+                </ol>
+            </div>
+            <input type="text" id="ctf4" placeholder="Masukkan flag" class="form-control mb-2 bg-dark text-light border-secondary">
+            <button class="btn btn-primary" onclick="checkCTF4()">Submit</button>
+            <p id="ctf4Result" class="mt-2"></p>
+        </div>
+
+        <!-- CTF Challenge 5: Hex to Text -->
+        <div class="ctf-challenge" data-aos="zoom-in" data-aos-delay="500">
+            <h4 class="ctf-title">Challenge 5: Hex to Text (Easy)</h4>
+            <p class="ctf-description">Konversi string hex berikut ke teks: "43796265724564757b6865785f746f5f746578745f3435367d". Flag dimulai dengan "CyberEdu{" dan diakhiri dengan "}".</p>
+            <div class="ctf-instructions">
+                <strong>Instruksi:</strong>
+                <ol>
+                    <li>Gunakan tool online hex to text converter.</li>
+                    <li>Konversi string hex ke teks biasa.</li>
+                    <li>Masukkan flag yang didapat ke kotak di bawah.</li>
+                </ol>
+            </div>
+            <input type="text" id="ctf5" placeholder="Masukkan flag" class="form-control mb-2 bg-dark text-light border-secondary">
+            <button class="btn btn-secondary" onclick="checkCTF5()">Submit</button>
+            <p id="ctf5Result" class="mt-2"></p>
+        </div>
+
+        <!-- CTF Challenge 6: Reverse String -->
+        <div class="ctf-challenge" data-aos="zoom-in" data-aos-delay="550">
+            <h4 class="ctf-title">Challenge 6: Reverse String (Easy)</h4>
+            <p class="ctf-description">Balikkan string berikut: "321_dnim_retcarahc{udErebyC}". Flag dimulai dengan "CyberEdu{" dan diakhiri dengan "}".</p>
+            <div class="ctf-instructions">
+                <strong>Instruksi:</strong>
+                <ol>
+                    <li>Baca string dari belakang ke depan.</li>
+                    <li>Balikkan urutan karakter.</li>
+                    <li>Masukkan flag yang didapat ke kotak di bawah.</li>
+                </ol>
+            </div>
+            <input type="text" id="ctf6" placeholder="Masukkan flag" class="form-control mb-2 bg-dark text-light border-secondary">
+            <button class="btn btn-danger" onclick="checkCTF6()">Submit</button>
+            <p id="ctf6Result" class="mt-2"></p>
+        </div>
+
+        <!-- CTF Challenge 7: Simple Math -->
+        <div class="ctf-challenge" data-aos="zoom-in" data-aos-delay="600">
+            <h4 class="ctf-title">Challenge 7: Simple Math (Easy)</h4>
+            <p class="ctf-description">Hitung hasil dari: (10 + 5) * 2 - 3. Flag adalah "CyberEdu{hasil}".</p>
+            <div class="ctf-instructions">
+                <strong>Instruksi:</strong>
+                <ol>
+                    <li>Hitung operasi matematika sederhana.</li>
+                    <li>Ganti "hasil" dengan angka yang benar.</li>
+                    <li>Masukkan flag ke kotak di bawah.</li>
+                </ol>
+            </div>
+            <input type="text" id="ctf7" placeholder="Masukkan flag" class="form-control mb-2 bg-dark text-light border-secondary">
+            <button class="btn btn-warning" onclick="checkCTF7()">Submit</button>
+            <p id="ctf7Result" class="mt-2"></p>
+        </div>
+
+        <!-- CTF Challenge 8: Binary to Text -->
+        <div class="ctf-challenge" data-aos="zoom-in" data-aos-delay="650">
+            <h4 class="ctf-title">Challenge 8: Binary to Text (Easy)</h4>
+            <p class="ctf-description">Konversi binary berikut ke teks: "01111011 01100010 01101001 01101110 01100001 01110010 01111001 01111101". Flag dimulai dengan "CyberEdu{" dan diakhiri dengan "}".</p>
+            <div class="ctf-instructions">
+                <strong>Instruksi:</strong>
+                <ol>
+                    <li>Gunakan tool online binary to text converter.</li>
+                    <li>Konversi setiap 8 bit ke karakter ASCII.</li>
+                    <li>Masukkan flag yang didapat ke kotak di bawah.</li>
+                </ol>
+            </div>
+            <input type="text" id="ctf8" placeholder="Masukkan flag" class="form-control mb-2 bg-dark text-light border-secondary">
+            <button class="btn btn-info" onclick="checkCTF8()">Submit</button>
+            <p id="ctf8Result" class="mt-2"></p>
+        </div>
+
+        <!-- CTF Challenge 9: Find in Source -->
+        <div class="ctf-challenge" data-aos="zoom-in" data-aos-delay="700">
+            <h4 class="ctf-title">Challenge 9: Find in Source (Easy)</h4>
+            <p class="ctf-description">Temukan flag yang tersembunyi di source code halaman ini. Cari komentar HTML yang berisi flag.</p>
+            <div class="ctf-instructions">
+                <strong>Instruksi:</strong>
+                <ol>
+                    <li>Klik kanan dan pilih "View Page Source" atau "Inspect Element".</li>
+                    <li>Cari komentar yang berisi flag.</li>
+                    <li>Masukkan flag ke kotak di bawah.</li>
+                </ol>
+            </div>
+            <!-- Flag : CyberEdu{source_code_789} -->
+            <input type="text" id="ctf9" placeholder="Masukkan flag" class="form-control mb-2 bg-dark text-light border-secondary">
+            <button class="btn btn-success" onclick="checkCTF9()">Submit</button>
+            <p id="ctf9Result" class="mt-2"></p>
+        </div>
+
+        <!-- CTF Challenge 10: ROT13 Again -->
+        <div class="ctf-challenge" data-aos="zoom-in" data-aos-delay="750">
+            <h4 class="ctf-title">Challenge 10: ROT13 Again (Easy)</h4>
+            <p class="ctf-description">Dekripsi pesan berikut: "PloreRqh{ebg13_nygre_abc}". Shift cipher dengan 13 posisi.</p>
+            <div class="ctf-instructions">
+                <strong>Instruksi:</strong>
+                <ol>
+                    <li>Gunakan ROT13 untuk dekripsi.</li>
+                    <li>Geser huruf 13 posisi.</li>
+                    <li>Masukkan flag yang didapat ke kotak di bawah.</li>
+                </ol>
+            </div>
+            <input type="text" id="ctf10" placeholder="Masukkan flag" class="form-control mb-2 bg-dark text-light border-secondary">
+            <button class="btn btn-primary" onclick="checkCTF10()">Submit</button>
+            <p id="ctf10Result" class="mt-2"></p>
+        </div>
+    </div>
+    </section>
+
+        <!-- Section baru: Terima Kasih dan Dukungan -->
+    <!-- Section baru: Terima Kasih dan Dukungan (disembunyikan default) -->
+    <section id="thank-you-section" class="section" style="display: none;">
         <div class="container">
-            <h2 data-aos="fade-right">Praktik Dasar Keamanan Siber (Termasuk CTF)</h2>
-            <h3 data-aos="fade-left" data-aos-delay="200">Simulasi Dasar</h3>
-            <div class="terminal" id="terminal1" data-aos="zoom-in" data-aos-delay="400">
-                <p>$ Simulasi Login Aman: Masukkan username dan password.</p>
-                <input type="text" id="username" placeholder="Username" class="form-control mb-2 bg-dark text-light border-secondary"><br>
-                <input type="password" id="password" placeholder="Password" class="form-control mb-2 bg-dark text-light border-secondary"><br>
-                <button class="btn btn-success" onclick="simulateLogin()">Login</button>
-                <p id="loginResult" class="mt-2"></p>
-            </div>
-            <h3 data-aos="fade-left" data-aos-delay="300">Mini CTF</h3>
-            <p data-aos="fade-up" data-aos-delay="500">CTF adalah tantangan untuk menemukan "flag" seperti FLAG{example}. Berikut contoh challenge seperti picoCTF:</p>
-            
-            <!-- CTF Challenge 1: Inspect Element -->
-            <div class="ctf-challenge" data-aos="zoom-in" data-aos-delay="600">
-                <h4 class="ctf-title">Challenge 1: Inspect Me (Easy)</h4>
-                <p class="ctf-description">Temukan flag yang tersembunyi di halaman ini. Flag dimulai dengan "picoCTF{" dan diakhiri dengan "}".</p>
-                <div class="ctf-instructions">
-                    <strong>Instruksi:</strong>
-                    <ol>
-                        <li>Klik kanan pada halaman web ini.</li>
-                        <li>Pilih "Inspect" atau "Inspect Element".</li>
-                        <li>Cari di bagian HTML untuk menemukan flag yang dikomentari.</li>
-                        <li>Masukkan flag ke dalam kotak di bawah.</li>
-                    </ol>
+            <h2 data-aos="fade-right">Terima Kasih dan Dukungan!</h2>
+            <div class="card p-5" data-aos="fade-up" data-aos-delay="50">
+                <p class="text-center">Wow, kamu telah berhasil menyelesaikan semua Challenge CTF dari 1 hingga 10! Kami sangat bangga dengan usahamu yang luar biasa dalam mempelajari konsep dasar keamanan siber. Terima kasih banyak karena telah mengerjakan soal-soal ini dengan tekun dan semangat.</p>
+                <p class="text-center">Keamanan siber adalah bidang yang terus berkembang, dan setiap langkah kecil seperti ini membawa kamu lebih dekat ke pemahaman yang lebih dalam. Jangan pernah berhenti belajar dan bereksplorasi—kami di sini untuk mendukungmu dalam setiap tantangan selanjutnya. Jika ada pertanyaan, saran, atau ingin tantangan lebih lanjut, jangan ragu untuk menghubungi kami!</p>
+                <p class="text-center"><strong>Semoga sukses selalu, dan teruslah menjadi ahli keamanan siber!</strong> 🚀</p>
+                <div class="text-center mt-4">
+                    <i class="fas fa-heart fa-3x text-danger"></i>
                 </div>
-                <!-- Flag tersembunyi: picoCTF{inspect_me_123} -->
-                <input type="text" id="ctf1" placeholder="Masukkan flag" class="form-control mb-2 bg-dark text-light border-secondary">
-                <button class="btn btn-warning" onclick="checkCTF1()">Submit</button>
-                <p id="ctf1Result" class="mt-2"></p>
-            </div>
-            
-            <!-- CTF Challenge 2: Basic SQL Injection -->
-            <div class="ctf-challenge" data-aos="zoom-in" data-aos-delay="700">
-                <h4 class="ctf-title">Challenge 2: SQL Injection (Easy)</h4>
-                <p class="ctf-description">Login sebagai admin tanpa mengetahui password. Flag akan muncul jika berhasil.</p>
-                <div class="ctf-instructions">
-                    <strong>Instruksi:</strong>
-                    <ol>
-                        <li>Masukkan username: admin</li>
-                        <li>Untuk password, gunakan payload SQL injection sederhana seperti: ' OR '1'='1</li>
-                        <li>Klik login dan lihat hasilnya.</li>
-                    </ol>
-                </div>
-                <input type="text" id="ctf2Username" placeholder="Username" class="form-control mb-2 bg-dark text-light border-secondary">
-                <input type="text" id="ctf2Password" placeholder="Password" class="form-control mb-2 bg-dark text-light border-secondary">
-                <button class="btn btn-info" onclick="checkCTF2()">Login</button>
-                <p id="ctf2Result" class="mt-2"></p>
-            </div>
-            
-            <!-- CTF Challenge 3: Caesar Cipher -->
-            <div class="ctf-challenge" data-aos="zoom-in" data-aos-delay="800">
-                <h4 class="ctf-title">Challenge 3: Caesar Cipher (Easy)</h4>
-                <p class="ctf-description">Dekripsi pesan berikut: "svhzohr{ebgngr_zbqryf_456}". Shift cipher dengan 13 posisi.</p>
-                <div class="ctf-instructions">
-                    <strong>Instruksi:</strong>
-                    <ol>
-                        <li>Caesar cipher menggeser huruf sebanyak 13 posisi (ROT13).</li>
-                        <li>Gunakan tool online atau dekripsi manual: A->N, B->O, dll.</li>
-                        <li>Masukkan flag yang didapat ke kotak di bawah.</li>
-                    </ol>
-                </div>
-                <input type="text" id="ctf3" placeholder="Masukkan flag" class="form-control mb-2 bg-dark text-light border-secondary">
-                <button class="btn btn-success" onclick="checkCTF3()">Submit</button>
-                <p id="ctf3Result" class="mt-2"></p>
             </div>
         </div>
     </section>
@@ -495,33 +344,41 @@
     <section class="section">
         <div class="container">
             <h2 data-aos="fade-right">Studi Kasus Keamanan Siber</h2>
-            <div class="card p-5" data-aos="fade-up" data-aos-delay="200">
-                <h4>Contoh: Kebocoran Data Equifax</h4>
-                <p><strong>Masalah:</strong> Kerentanan software Apache Struts yang tidak diperbaiki tepat waktu.</p>
-                <p><strong>Dampak:</strong> Pencurian data pribadi 147 juta orang, termasuk nomor SSN, tanggal lahir, dan alamat.</p>
-                <p><strong>Pencegahan:</strong> Update sistem secara rutin, lakukan audit keamanan berkala, dan implementasikan patch keamanan segera.</p>
-                <div class="mt-4">
-                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Timeline Kasus" class="img-fluid rounded shadow-lg">
-                </div>
+            <div class="card p-5" data-aos="fade-up" data-aos-delay="50">
+                <h4>- Peretasan Situs Web Milik Universitas Indonesia (UI)</h4>
+                <p>Universitas besar sekelas UI saja juga pernah mengalami kejahatan cyber yang menyebabkan gangguan layanan pada situs web. Hal ini benar-benar merusak reputasi kampus UI sebagai salah satu kampus terkemuka di Indonesia. Serangan ini juga menjadi dorongan bagi setiap institusi pendidikan agar meningkatkan keamanan di era digital.</p>
+                
+                <h4>- Pencurian Data di Tokopedia</h4>
+                <p>Platform belanja online seperti Tokopedia juga pernah mengalami pencurian data pengguna akibat ulah hacker yang tidak bertanggung jawab. Marketplace yang identik dengan warna hijau ini mencuri data para pengguna yang meliputi, nama lengkap, tempat tanggal lahir, email, nomor telepon, password hingga aktivitas transaksi</p>
+                <p>Untungnya pihak Tokopedia bisa bertindak cepat dengan mengubah kata sandi dan berhasil mengamankan kata sandi dan data pembayaran pengguna. Sayangnya, pada saat itu data pribadi tetap bocor di dark web dan data yang berisi 91 juta catatan berhasil dijual.</p>
+                
+                <h4>- Serangan Website DPR RI</h4>
+                <p>Serangan DDoS juga sempat menyerang website DPR RI. Serangan yang terjadi tahun 2020 ini menyebabkan website down atau tidak bisa diakses dan nama situs berubah. Serangan yang terjadi di website pemerintahan ini membuat masyarakat mempertanyakan keamanan infrastruktur penting di negara Indonesia.</p>
+            
+                <h4>- Perang Hacker Indonesia dengan Australia</h4>
+                <p>Pada tahun 2013, pernah terjadi perang hacker antara Indonesia dengan Australia. Dimana sekelompok peretas dari Indonesia yang menamai diri mereka dengan sebutan 'Indonesian Cyber Army' terlebih dahulu meretas web Australian Secret Intelligence Service (ASIS).</p>
+                <p>Ini sebenarnya juga bukan sekedar serangan biasa, namun sebagai bentuk respon atas praktik mata-mata yang dilakukan Australia kepada Indonesia. Serangan balasan dari hacker masing-masing negara juga tidak terelakkan dengan saling menunjukkan rivalitas cyber.</p>
             </div>
         </div>
     </section>
 
     <!-- Tentang Proyek -->
     <section id="tentang" class="section">
-        <div class="container">
+        <div class="container p-4">
             <h2 data-aos="fade-right">Tentang Proyek</h2>
             <div class="row">
-                <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
+                <div class="col-md-6 p-4">
                     <div class="card p-4 h-100">
                         <h4><i class="fas fa-bullseye text-warning"></i> Tujuan & Manfaat</h4>
-                        <p>Menyediakan platform edukasi interaktif premium untuk meningkatkan kesadaran dan pemahaman konsep dasar keamanan siber. Manfaat: Membantu pemula belajar tanpa risiko, melalui simulasi aman dan CTF edukatif.</p>
+                        <p>Tujuan : Menyediakan platform edukasi interaktif untuk meningkatkan kesadaran dan pemahaman konsep dasar keamanan siber. </p>
+                        <p>Manfaat : Membantu pemula belajar tanpa risiko, melalui simulasi aman dan CTF edukatif.</p>
                     </div>
                 </div>
-                <div class="col-md-6" data-aos="fade-up" data-aos-delay="400">
+                <div class="col-md-6 p-4">
                     <div class="card p-4 h-100">
                         <h4><i class="fas fa-users text-info"></i> Target & Tools</h4>
-                        <p>Target pengguna: Pemula, mahasiswa, dan profesional IT yang ingin memperdalam pengetahuan keamanan siber. Tools yang digunakan: HTML, CSS, JavaScript, Bootstrap, AOS untuk animasi, Particles.js untuk efek visual, dan Typed.js untuk teks animasi.</p>
+                        <p>Target pengguna : Pemula, mahasiswa, dan profesional IT yang ingin memperdalam pengetahuan keamanan siber. </p>
+                        <p>Tools yang digunakan : HTML, CSS, JavaScript, Bootstrap, AOS untuk animasi, Particles.js untuk efek visual, dan Typed.js untuk teks animasi.</p>
                         <p><strong>Peran Tim:</strong> Dikembangkan oleh developer solo untuk proyek akademik.</p>
                     </div>
                 </div>
@@ -533,7 +390,7 @@
         <div class="footer-content">
             <div class="container">
                 <h3>CyberEdu</h3>
-                <p>&copy; 2023 CyberEdu. Dibuat dengan <i class="fas fa-heart text-danger"></i> untuk edukasi keamanan siber. Semua hak cipta dilindungi.</p>
+                <p>&copy; 2026 CyberEdu.</p>
                 <div class="social-links mt-3">
                     <a href="#" class="text-light me-3"><i class="fab fa-facebook fa-2x"></i></a>
                     <a href="#" class="text-light me-3"><i class="fab fa-twitter fa-2x"></i></a>
@@ -548,144 +405,6 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
-    <script>
-        AOS.init({
-            duration: 1000,
-            once: true
-        });
-
-        // Particles.js for background effect
-        particlesJS('particles-js', {
-            particles: {
-                number: { value: 80, density: { enable: true, value_area: 800 } },
-                color: { value: '#ffd700' },
-                shape: { type: 'circle' },
-                opacity: { value: 0.5, random: true },
-                size: { value: 3, random: true },
-                line_linked: { enable: true, distance: 150, color: '#ffd700', opacity: 0.4, width: 1 },
-                move: { enable: true, speed: 2, direction: 'none', random: true, straight: false, out_mode: 'out' }
-            },
-            interactivity: {
-                detect_on: 'canvas',
-                events: { onhover: { enable: true, mode: 'repulse' }, onclick: { enable: true, mode: 'push' } },
-                modes: { repulse: { distance: 200, duration: 0.4 }, push: { particles_nb: 4 } }
-            },
-            retina_detect: true
-        });
-
-        // Typed.js for animated text
-        var typed = new Typed('#typed', {
-            strings: ['Selamat Datang di CyberEdu', 'Pelajari Keamanan Siber', 'Interaktif & Premium'],
-            typeSpeed: 50,
-            backSpeed: 30,
-            loop: true
-        });
-
-        function toggleDarkMode() {
-            document.body.classList.toggle('dark-mode');
-            const toggleBtn = document.querySelector('.dark-mode-toggle i');
-            if (document.body.classList.contains('dark-mode')) {
-                toggleBtn.classList.remove('fa-moon');
-                toggleBtn.classList.add('fa-sun');
-            } else {
-                toggleBtn.classList.remove('fa-sun');
-                toggleBtn.classList.add('fa-moon');
-            }
-        }
-
-        function scrollToSection(id) {
-            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-        }
-
-        function showInfo(event) {
-            const rect = event.target.getBoundingClientRect();
-            const x = event.clientX - rect.left;
-            const y = event.clientY - rect.top;
-            let infoId = '';
-            if (x < rect.width / 2 && y < rect.height / 2) infoId = 'auth';
-            else if (x >= rect.width / 2 && y < rect.height / 2) infoId = 'cia';
-            else if (x < rect.width / 2 && y >= rect.height / 2) infoId = 'password';
-            else infoId = 'network';
-            const info = document.getElementById(infoId);
-            info.style.display = 'block';
-            info.style.left = `${x - 200}px`;
-            info.style.top = `${y - 50}px`;
-        }
-
-        function hideInfo() {
-            const infos = document.querySelectorAll('.hover-info');
-            infos.forEach(info => info.style.display = 'none');
-        }
-
-        function simulateLogin() {
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            const result = document.getElementById('loginResult');
-            if (username === 'user' && password === 'secure123') {
-                result.innerHTML = '<span class="text-success">$ Login berhasil! <i class="fas fa-check-circle"></i></span>';
-                result.style.animation = 'popIn 0.5s ease-out';
-            } else {
-                result.innerHTML = '<span class="text-danger">$ Login gagal. Coba lagi. <i class="fas fa-times-circle"></i></span>';
-                result.style.animation = 'popIn 0.5s ease-out';
-            }
-        }
-
-        function checkCTF1() {
-            const flag = document.getElementById('ctf1').value;
-            const result = document.getElementById('ctf1Result');
-            if (flag === 'picoCTF{inspect_me_123}') {
-                result.innerHTML = '<span class="text-success">$ Flag benar! Selamat! <i class="fas fa-flag"></i></span>';
-                result.style.animation = 'popIn 0.5s ease-out';
-            } else {
-                result.innerHTML = '<span class="text-warning">$ Flag salah. Coba lagi. <i class="fas fa-exclamation-triangle"></i></span>';
-                result.style.animation = 'popIn 0.5s ease-out';
-            }
-        }
-
-        function checkCTF2() {
-            const username = document.getElementById('ctf2Username').value;
-            const password = document.getElementById('ctf2Password').value;
-            const result = document.getElementById('ctf2Result');
-            if (username === 'admin' && password === "' OR '1'='1") {
-                result.innerHTML = '<span class="text-success">$ Login berhasil! Flag: picoCTF{sql_injection_789} <i class="fas fa-flag"></i></span>';
-                result.style.animation = 'popIn 0.5s ease-out';
-            } else {
-                result.innerHTML = '<span class="text-danger">$ Login gagal. Gunakan payload SQL injection. <i class="fas fa-times-circle"></i></span>';
-                result.style.animation = 'popIn 0.5s ease-out';
-            }
-        }
-
-		function checkCTF3() {
-            const flag = document.getElementById('ctf3').value;
-            const result = document.getElementById('ctf3Result');
-            if (flag === 'picoCTF{rot13_cipher_456}') {
-                result.innerHTML = '<span class="text-success">$ Flag benar! Selamat! <i class="fas fa-flag"></i></span>';
-                result.style.animation = 'popIn 0.5s ease-out';
-            } else {
-                result.innerHTML = '<span class="text-warning">$ Flag salah. Coba lagi. <i class="fas fa-exclamation-triangle"></i></span>';
-                result.style.animation = 'popIn 0.5s ease-out';
-            }
-        }
-
-        // Parallax effect on scroll
-        window.addEventListener('scroll', function() {
-            const scrolled = window.pageYOffset;
-            const parallaxBg = document.querySelector('.parallax-bg');
-            if (parallaxBg) {
-                parallaxBg.style.transform = `translateY(${scrolled * 0.5}px)`;
-            }
-        });
-
-        // Add scroll effect to navbar
-        window.addEventListener('scroll', function() {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.style.background = 'rgba(0, 0, 0, 0.8)';
-                navbar.style.backdropFilter = 'blur(20px)';
-            } else {
-                navbar.style.background = 'rgba(255, 255, 255, 0.1)';
-            }
-        });
-    </script>
+    <script src="js/script.js"></script>
 </body>
 </html>
